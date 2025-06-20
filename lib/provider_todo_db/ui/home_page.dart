@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_exp_391/add_todo_page.dart';
+import 'package:todo_exp_391/provider_todo_db/ui/add_todo_page.dart';
 import 'package:todo_exp_391/db_helper.dart';
-import 'package:todo_exp_391/db_provider.dart';
+import 'package:todo_exp_391/provider_todo_db/db_provider.dart';
 
-class HomePage extends StatefulWidget {
+class HomePageP extends StatefulWidget {
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePageP> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePageP> {
 
   List<Map<String, dynamic>> mTodo = [];
   int filter = 0;
@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Consumer<DbProvider>(
             builder: (ctx, provider, __){
+              ///mTodo = context.watch<DbProvider>().getData();
               ///mTodo = ctx.watch<DbProvider>().getData();
               mTodo = provider.getData();
               return Expanded(
@@ -107,7 +108,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTodoPage(),));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTodoPageP(),));
         },
         child: Icon(Icons.add),
       ),

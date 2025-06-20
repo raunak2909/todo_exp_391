@@ -52,7 +52,7 @@ class DbHelper {
     return rowsEffected > 0;
   }
 
-  Future<List<Map<String, dynamic>>> fetchAllTodo(int filter) async {
+  Future<List<Map<String, dynamic>>> fetchAllTodo({int filter = 1}) async {
     var db = await initDB();
     List<Map<String, dynamic>> allTodo = [];
     if(filter>0) {

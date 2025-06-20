@@ -13,13 +13,13 @@ class DbProvider extends ChangeNotifier{
   addTodo({required String title, required String desc, required int priority, int filter = 0}) async{
     bool check = await dbHelper.addTodo(title: title, desc: desc, priority: priority);
     if(check) {
-      _allTodo = await dbHelper.fetchAllTodo(filter);
+      _allTodo = await dbHelper.fetchAllTodo(filter: filter);
       notifyListeners();
     }
   }
 
   fetchInitialTodos({int filter = 0}) async{
-    _allTodo = await dbHelper.fetchAllTodo(filter);
+    _allTodo = await dbHelper.fetchAllTodo(filter: filter);
     notifyListeners();
   }
 
@@ -27,7 +27,7 @@ class DbProvider extends ChangeNotifier{
     bool check = await dbHelper.updateTodoCompleted(id: id, isCompleted: isCompleted);
 
     if(check){
-      _allTodo = await dbHelper.fetchAllTodo(filter);
+      _allTodo = await dbHelper.fetchAllTodo(filter: filter);
       notifyListeners();
     }
   }

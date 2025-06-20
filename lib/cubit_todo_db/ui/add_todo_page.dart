@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_exp_391/cubit_todo_db/cubit/todo_cubit.dart';
 import 'package:todo_exp_391/db_helper.dart';
-import 'package:todo_exp_391/db_provider.dart';
+import 'package:todo_exp_391/provider_todo_db/db_provider.dart';
 
 class AddTodoPage extends StatefulWidget {
   @override
@@ -88,8 +89,7 @@ class _AddTodoPageState extends State<AddTodoPage> {
             SizedBox(
               width: double.infinity,
                 child: ElevatedButton(onPressed: () async{
-                  ///Provider.of<DbProvider>(context, listen: false).addTodo(title: titleController.text, desc: descController.text, priority: priority);
-                  context.read<DbProvider>().addTodo(title: titleController.text, desc: descController.text, priority: priority);
+                  context.read<TodoCubit>().addTodo(title: titleController.text, desc: descController.text, priority: priority);
                   Navigator.pop(context);
                 }, child: Text('Add')))
           ],
